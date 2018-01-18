@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title>Orçamento Total por Ilhas</title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/Orcamento_Ilhas_1.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[14.7307740506,-26.3575054554],[17.2551545241,-21.6325814036]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
+        var bounds_group = new L.featureGroup([]);
+        var basemap0 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+            maxZoom: 28
+        });
+        basemap0.addTo(map);
+        function setBounds() {
+        }
+        var overlay_GoogleEarth_0 = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            opacity: 1.0
+        });
+        overlay_GoogleEarth_0.addTo(map);
+        map.addLayer(overlay_GoogleEarth_0);
+        function pop_Orcamento_Ilhas_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Ilha</th>\
+                        <td>' + (feature.properties['Nome'] !== null ? Autolinker.link(String(feature.properties['Nome'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Salvamento do Gado</th>\
+                        <td>' + (feature.properties['Salv_Gado'] !== null ? Autolinker.link(String(feature.properties['Salv_Gado'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Gestão dos Recursos Hidricos</th>\
+                        <td>' + (feature.properties['Rec_Hidric'] !== null ? Autolinker.link(String(feature.properties['Rec_Hidric'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Criação de Emprego</th>\
+                        <td>' + (feature.properties['Emprego'] !== null ? Autolinker.link(String(feature.properties['Emprego'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Total</th>\
+                        <td>' + (feature.properties['Total'] !== null ? Autolinker.link(String(feature.properties['Total'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Orcamento_Ilhas_1_0(feature) {
+            if (feature.properties['Total'] >= 10769225.000000 && feature.properties['Total'] <= 10000000.000000 ) {
+                return {
+                pane: 'pane_Orcamento_Ilhas_1',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(247,251,255,1.0)',
+            }
+            }
+            if (feature.properties['Total'] >= 10000000.000000 && feature.properties['Total'] <= 50000000.000000 ) {
+                return {
+                pane: 'pane_Orcamento_Ilhas_1',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(176,210,232,1.0)',
+            }
+            }
+            if (feature.properties['Total'] >= 50000000.000000 && feature.properties['Total'] <= 150000000.000000 ) {
+                return {
+                pane: 'pane_Orcamento_Ilhas_1',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(62,142,196,1.0)',
+            }
+            }
+            if (feature.properties['Total'] >= 150000000.000000 && feature.properties['Total'] <= 552061380.000000 ) {
+                return {
+                pane: 'pane_Orcamento_Ilhas_1',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(8,48,107,1.0)',
+            }
+            }
+        }
+        map.createPane('pane_Orcamento_Ilhas_1');
+        map.getPane('pane_Orcamento_Ilhas_1').style.zIndex = 401;
+        map.getPane('pane_Orcamento_Ilhas_1').style['mix-blend-mode'] = 'normal';
+        var layer_Orcamento_Ilhas_1 = new L.geoJson(json_Orcamento_Ilhas_1, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Orcamento_Ilhas_1',
+            onEachFeature: pop_Orcamento_Ilhas_1,
+            style: style_Orcamento_Ilhas_1_0,
+        });
+        bounds_group.addLayer(layer_Orcamento_Ilhas_1);
+        map.addLayer(layer_Orcamento_Ilhas_1);
+        var title = new L.Control();
+        title.onAdd = function (map) {
+            this._div = L.DomUtil.create('div', 'info');
+            this.update();
+            return this._div;
+        };
+        title.update = function () {
+            this._div.innerHTML = '<h2>Orçamento Total por Ilhas</h2>';
+        };
+        title.addTo(map);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'Orcamento_Ilhas<br /><table><tr><td style="text-align: center;"><img src="legend/Orcamento_Ilhas_1_10769225100000000.png" /></td><td> 10769225 - 10000000 </td></tr><tr><td style="text-align: center;"><img src="legend/Orcamento_Ilhas_1_10000000500000001.png" /></td><td> 10000000 - 50000000 </td></tr><tr><td style="text-align: center;"><img src="legend/Orcamento_Ilhas_1_500000001500000002.png" /></td><td> 50000000 - 150000000 </td></tr><tr><td style="text-align: center;"><img src="legend/Orcamento_Ilhas_1_1500000005520613803.png" /></td><td> 150000000 - 552061380 </td></tr></table>': layer_Orcamento_Ilhas_1,"GoogleEarth": overlay_GoogleEarth_0,}).addTo(map);
+        L.control.scale({position: 'bottomleft', maxWidth: 100, metric: true, imperial: false, updateWhenIdle: false}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
